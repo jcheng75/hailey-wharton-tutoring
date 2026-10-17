@@ -241,7 +241,7 @@ details p{color:var(--muted);margin-top:8px}
 
 <script>
 var built='';
-document.getElementById('buildBtn').addEventListener('click',function(){
+function buildInquiry(){
   var name=document.getElementById('fName').value.trim()||'(name not given)';
   var email=document.getElementById('fEmail').value.trim()||'(email not given)';
   var grade=document.getElementById('fGrade').value;
@@ -253,6 +253,10 @@ document.getElementById('buildBtn').addEventListener('click',function(){
   document.getElementById('output').textContent=built;
   document.getElementById('mailtoBtn').href='mailto:hailey.j.cheng@gmail.com?subject='+encodeURIComponent('Tutoring inquiry — '+subj+' ('+grade+')')+'&body='+encodeURIComponent(built);
   document.getElementById('copyNote').textContent='Ready — tap Send by email, or copy the text into any message.';
+}
+document.getElementById('buildBtn').addEventListener('click',buildInquiry);
+document.getElementById('mailtoBtn').addEventListener('click',function(){
+  if(!built){buildInquiry();}
 });
 document.getElementById('copyBtn').addEventListener('click',function(){
   if(!built){document.getElementById('copyNote').textContent='Build your inquiry first, then copy it.';return}
